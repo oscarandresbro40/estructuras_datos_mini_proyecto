@@ -11,12 +11,14 @@ public final class Operaciones {
             for(Persona p:e.personas.lista)if(p.id.equals(id))return p;
             return null;
         }
+        //**** INICIO: HashSet - buscarPersona ****//
         if(e.tipo==Estado.Tipo.HashSet) {
             // Recorremos el conjunto para devolver la Persona almacenada con todos sus datos;
             // contains solo indica si existe un elemento equivalente.
             for(Persona p:e.personas.conjunto)if(p.id.equals(id))return p;
             return null;
         }
+        //**** FIN: HashSet - buscarPersona ****//
         // TODO: resolver con la estructura activa elegida. Devolver null si no existe.
         throw pendiente(e,"buscarPersona");
     }
