@@ -36,6 +36,19 @@ public final class Operaciones {
             }
             return false;
         }
+        //**** INICIO: HashSet - corregirPais ****//
+        if(e.tipo==Estado.Tipo.HashSet) {
+            boolean existePais=false;
+            for(Pais p:e.paises.conjunto)if(p.id.equals(codigoPais)){existePais=true;break;}
+            if(!existePais)return false;
+            Persona persona=buscarPersona(e,idPersona);
+            if(persona==null || persona.codigoPais.equals(codigoPais))return false;
+            // La identidad depende del ID: hay que retirar la versión anterior antes de agregar la nueva.
+            e.personas.conjunto.remove(persona);
+            e.personas.conjunto.add(new Persona(persona.id,persona.nombre,codigoPais));
+            return true;
+        }
+        //**** FIN: HashSet - corregirPais ****//
         // TODO: validar país/persona y reemplazar la persona manteniendo su identidad.
         throw pendiente(e,"corregirPais");
     }
